@@ -20,5 +20,6 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => false]);
 Route::post('/login', [CustomLoginController::class, 'login'])->name('login');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'home'], function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
