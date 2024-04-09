@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home | Dashboard</title>
     <link rel="icon" href="{{asset('public/favicon.ico ')}}" />
-
-    <!-- Google Font: Source Sans Pro -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.1.0/simple-lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href={{
         asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback') }}>
     <!-- Font Awesome -->
@@ -31,6 +30,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href={{ asset('//fonts.bunny.net') }}>
     <link href={{ asset('https://fonts.bunny.net/css?family=Nunito') }} rel="stylesheet">
+    @yield('styles')
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -139,11 +139,9 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">
-                                {{-- <i class="nav-icon fas fa-th"></i> --}}
+                                <i class="nav-icon fa-solid fa-house"></i>
                                 <p>
                                     Home
                                 </p>
@@ -151,7 +149,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class=" nav-icon fa-solid fa-list"></i>
                                 <p>
                                     api-docs
                                 </p>
@@ -160,6 +158,7 @@
                         <li class="nav-item">
                             <a href="{{ route('image.all') }}" class="nav-link">
                                 {{-- <i class="nav-icon fas fa-th"></i> --}}
+                                <i class="nav-icon fa-solid fa-images"></i>
                                 <p>
                                     list images
                                 </p>
@@ -180,7 +179,13 @@
                                 <li class="nav-item">
                                     <a href="{{ route('image.upload.view') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Upload image</p>
+                                        <p>Upload images</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('image.all') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Delete images</p>
                                     </a>
                                 </li>
                                 @endif
@@ -263,6 +268,8 @@
     <script src={{asset('dist/js/adminlte.js')}}></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src={{asset('dist/js/pages/dashboard.js')}}></script>
+
+    @yield('scripts')
 </body>
 
 </html>

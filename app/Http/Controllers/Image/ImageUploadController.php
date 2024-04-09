@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Image as ImageModel;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ImageUploadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function __invoke(Request $request)
     {
         $request->validate([
@@ -33,11 +38,11 @@ class ImageUploadController extends Controller
     {
 
         if (ImageModel::where('filename', $filename)->exists()) {
-            //Storage::delete('public/uploads/' . $filename);
             $path = $uploadedFile->storeAs('uploads', $uploadedFile->getClientOriginalName());
-            $image = Image::make(Storage::disk('public')->get($path));
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read(Storage::disk('public')->get($path));
             if ($image->width() > 512 || $image->height() > 512) {
-                $image->fit(512, 512);
+                $image->cover(512, 512);
             }
             $image->save(Storage::path('/public/' . $path), 80);
             ImageModel::where('filename', $filename)->update([
@@ -48,9 +53,10 @@ class ImageUploadController extends Controller
             ]);
         } else {
             $path = $uploadedFile->storeAs('uploads', $uploadedFile->getClientOriginalName(), 'public');
-            $image = Image::make(Storage::disk('public')->get($path));
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read(Storage::disk('public')->get($path));
             if ($image->width() > 512 || $image->height() > 512) {
-                $image->fit(512, 512);
+                $image->cover(512, 512);
             }
             $image->save(Storage::path('/public/' . $path), 80);
             ImageModel::create([

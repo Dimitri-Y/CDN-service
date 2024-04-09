@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth\CustomLoginController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes(['verify' => false]);
 Route::post('/login', [CustomLoginController::class, 'login'])->name('login');
