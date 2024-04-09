@@ -23,9 +23,9 @@ class CustomLoginController extends Controller
         $this->validateLogin($request);
         $credentials = $request->only('login', 'password');
         $credentials['password'] = Hash::make($credentials['password']); // Захешувати пароль
-
+        $remember = $request->input('remember') === 'on' ? true : false;
         $credentials['password'] = $request->input('password');
-        if (Auth::guard()->attempt($credentials)) {
+        if (Auth::guard()->attempt($credentials, $remember)) {
             return $this->sendLoginResponse($request);
         }
 

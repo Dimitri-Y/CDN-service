@@ -835,15 +835,15 @@
         @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
             @auth
-            <a href="{{ url('/home') }}"
+            <a href="{{ url('/home') }}" style="font-size: 20px;"
                 class="font-semibold text-black-600 hover:text-red-900 dark:text-gray-400 dark:hover:text-red focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
             @else
-            <a href="{{ route('login') }}"
+            <a href="{{ route('login') }}" style="font-size: 20px;"
                 class="font-semibold text-black-600 hover:text-red-900 dark:text-gray-400 dark:hover:text-red focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
                 in</a>
 
             @if (Route::has('register'))
-            <a href="{{ route('register') }}"
+            <a href="{{ route('register') }}" style="font-size: 20px;"
                 class="ml-4 font-semibold text-black-600 hover:text-red-900 dark:text-gray-400 dark:hover:text-red focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
             @endif
             @endauth
