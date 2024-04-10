@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Image;
+namespace App\Http\Controllers\API_Image;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,16 +22,27 @@ class ImageUploadController extends Controller
         ]);
         if ($request->hasFile('images')) {
             $array_filenames = '';
+            $response = [
+                "status" => 201,
+                "message" => "",
+                "timestamp" => time(),
+                "files" => [],
+
+            ];
             foreach ($request->file('images') as $uploadedFile) {
                 $filename = $uploadedFile->getClientOriginalName();
                 $array_filenames .= $filename . ' ';
                 $this->AddToDB($filename, $uploadedFile);
+                $fileData = [
+                    "filename" => $filename,
+                    "url" => asset('file/') . '/' . 'uploads/' . $filename,
+                ];
+                $response['files'][] = $fileData;
             }
-            session()->flash('success', 'Images ' . "'" . $array_filenames . "' " . 'uploaded successfully');
-            return redirect()->back();
+            $response['message'] = 'Images ' . "'" . $array_filenames . "' " . 'uploaded successfully';
+            return response()->json($response);
         } else {
-            session()->flash('error', 'Upload images, please');
-            return redirect()->back();
+            return response()->json(['error' => 'Files not found.Upload images, please'], 400);
         }
     }
     protected function AddToDB($filename, $uploadedFile)

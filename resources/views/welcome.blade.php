@@ -826,25 +826,23 @@
                 padding: 2rem
             }
         }
+
     </style>
 </head>
 
 <body class="antialiased">
-    <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter">
+    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter">
         @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
             @auth
-            <a href="{{ url('/home') }}" style="font-size: 20px;"
-                class="font-semibold text-black-600 hover:text-red-900 dark:text-gray-400 dark:hover:text-red focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+            <a href="{{ url('/home') }}" style="font-size: 20px;" class="font-semibold text-black-600 hover:text-red-900 dark:text-gray-400 dark:hover:text-red focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+            <a href="{{ route('logout') }}" style="font-size: 20px;" class="font-semibold text-black-600 hover:text-red-900 dark:text-gray-400 dark:hover:text-red focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Logout</a>
             @else
-            <a href="{{ route('login') }}" style="font-size: 20px;"
-                class="font-semibold text-black-600 hover:text-red-900 dark:text-gray-400 dark:hover:text-red focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
+            <a href="{{ route('login') }}" style="font-size: 20px;" class="font-semibold text-black-600 hover:text-red-900 dark:text-gray-400 dark:hover:text-red focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
                 in</a>
 
             @if (Route::has('register'))
-            <a href="{{ route('register') }}" style="font-size: 20px;"
-                class="ml-4 font-semibold text-black-600 hover:text-red-900 dark:text-gray-400 dark:hover:text-red focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+            <a href="{{ route('register') }}" style="font-size: 20px;" class="ml-4 font-semibold text-black-600 hover:text-red-900 dark:text-gray-400 dark:hover:text-red focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
             @endif
             @endauth
         </div>

@@ -148,7 +148,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">
+                            <a class="nav-link" href="{{ route('api-docs') }}">
                                 <i class=" nav-icon fa-solid fa-list"></i>
                                 <p>
                                     api-docs
