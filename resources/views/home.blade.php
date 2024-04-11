@@ -148,14 +148,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('api-docs') }}">
-                                <i class=" nav-icon fa-solid fa-list"></i>
-                                <p>
-                                    api-docs
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('image.all') }}" class="nav-link">
                                 {{-- <i class="nav-icon fas fa-th"></i> --}}
                                 <i class="nav-icon fa-solid fa-images"></i>

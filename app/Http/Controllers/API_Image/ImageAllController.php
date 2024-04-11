@@ -9,11 +9,14 @@ class ImageAllController extends Controller
 {
     public function __invoke()
     {
-        $images = Image::all();
+        $images = Image::paginate(10);
         $response = [
             "status" => 200,
             "timestamp" => time(),
-            "total" => $images->count(),
+            "total" => $images->total(),
+            "per_page" => $images->perPage(),
+            "current_page" => $images->currentPage(),
+            "last_page" => $images->lastPage(),
             "list" => [
                 "name" => "uploads",
                 "type" => "folder",
